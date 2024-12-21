@@ -7,7 +7,7 @@ from huggingface_hub import InferenceClient
 from flask import Flask, render_template, request, redirect, url_for, send_file
 
 #client = InferenceClient("stabilityai/stable-diffusion-2-1", token = "hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-client = InferenceClient("stabilityai/stable-diffusion-2-1", token = "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")
+client = InferenceClient("stabilityai/stable-diffusion-2-1", token = "")
 
 output_file_path = 'output.txt'
 
