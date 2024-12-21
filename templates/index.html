@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Generation</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f7fc;
+			margin: 0;
+			padding: 20px;
+		}
+		h1, h2 {
+			color: #2c3e50;
+			font-size: 18px;
+			font-family: sans-serif;
+		}
+		form {
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			max-width: 500px;
+			margin: 20px auto;
+		}
+		label {
+			font-size: 16px;
+			font-family: sans-serif;
+			margin-bottom: 10px;
+			display: block;
+			color: #34495e;
+		}
+		input[type="text"] {
+			width: 95%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+		}
+		button {
+			background-color: #3498db;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			transition: background-color 0.3s ease;
+		}
+		button:hover {
+			background-color: #2980b9;
+		}
+		img {
+			max-width: 90%;
+			max-height: 90%;
+			border-radius: 8px;
+		}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<form method="POST">
+		<h1>Enter your Name_EMPID</h1>
+			<label for="name_id">Name_EMPID:</label>
+			<input type="text" id="name_id" name="name_id" value="{{ name_id }}" required>
+	
+		<h1>Enter a Prompt to Generate an Image</h1>
+			<label for="prompt">Prompt:</label>
+			<input type="text" id="prompt" name="prompt" value="{{ prompt }}" required>
+			<button type="submit">Generate Image</button>
+		</form>
+
+		{% if img_data %}
+			<!-- <img src="{{ image_url }}" alt="Generated Image"> -->
+			<form method="POST" action="{{ url_for('submit') }}">
+				<h2>Generated Image:</h2>
+				<img id="picture" src="data:image/jpeg;base64,{{ img_data }}">
+				<input type="hidden" name="prompt" value="{{ prompt }}">
+				<input type="hidden" name="img_data" value="{{ img_data }}">
+				<input type="hidden" name="file_name" value="{{ file_name }}">
+				<button type="submit">Submit Final Image</button>
+			</form>
+		{% endif %}
+	</div>
+</body>
+</html>
+
